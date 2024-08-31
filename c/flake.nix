@@ -52,11 +52,12 @@
 
             packages = with pkgs; [
                 gcc
+                ccls
                 sops # sops
                 age # used for sops encryption
+                #yq-go # used to filter yaml from sops secrets
                 # add further packages here, e.g.:
                 #openapi-generator-cli
-                yq-go
                 # can also add local scripts from flake's packages
                 #my-script
               ];
