@@ -11,12 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, flake-utils, devshell, gomod2nix }:
+  outputs = { self, nixpkgs, flake-utils, devshell }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ devshell.overlays.default gomod2nix.overlays.default ];
+          overlays = [ devshell.overlays.default ];
         };
         # Example of local packaged script
         #my-script-buildInputs = with pkgs; [ curl ];
