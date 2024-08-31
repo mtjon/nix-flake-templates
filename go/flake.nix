@@ -1,5 +1,5 @@
 {
-  description = "Go project templated from github:mtjon/nix-flake-templates.";
+  description = "Go project templated from github:mtjon/nix-flake-templates#go.";
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils = {

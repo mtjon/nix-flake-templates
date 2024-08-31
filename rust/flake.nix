@@ -1,9 +1,19 @@
 {
-  description = "Go project templated from github:mtjon/nix-flake-templates.";
+  description = "Rust project templated from github:mtjon/nix-flake-templates#rust.";
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    devshell.url = "github:numtide/devshell";
-    naersk.url = "github:nix-community/naersk/master";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    naersk = {
+      url = "github:nix-community/naersk/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, flake-utils, devshell, naersk }:
     flake-utils.lib.eachDefaultSystem (system:
