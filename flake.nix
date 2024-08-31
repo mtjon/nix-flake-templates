@@ -1,13 +1,26 @@
 {
 outputs = { self }: rec {
   templates = {
+    c = {
+      path = ./c;
+      description = "C template";
+      welcomeText = ''
+        # Templated C project
+
+        This template provides the C language and LSP, and SOPS for secret
+        management.
+
+        See `README.md` for further information.
+      '';
+    };
+
     rust = { 
       path = ./rust;
       description = "Rust template";
       welcomeText = ''
         # Templated Rust project
 
-        This template provides the Rust language and LSP, cargo2nix for converting
+        This template provides the Rust language and LSP, naersk for converting
         your Cargo modules to Nix, and SOPS for secret management.
 
         See `README.md` for further information.
@@ -20,8 +33,8 @@ outputs = { self }: rec {
       welcomeText = ''
         # Templated Go project
 
-        This template provides the Go language and LSP, gomod2nix for converting
-        your Go modules to Nix, and SOPS for secret management.
+        This template provides the Go language and LSP, gomod2nix for
+        converting your Go modules to Nix, and SOPS for secret management.
 
         See `README.md` for further information.
       '';
