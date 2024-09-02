@@ -79,6 +79,7 @@
                 gopls
                 sops # sops
                 age # used for sops encryption
+                skopeo # used for copying docker/ oci images between registries
                 # add further packages here, e.g.:
                 #openapi-generator-cli
                 #yq-go
