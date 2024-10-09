@@ -40,6 +40,19 @@ outputs = { self }: rec {
       '';
     };
 
+    zig = {
+      path = ./zig;
+      description = "Zig template";
+      welcomeText = ''
+        # Templated Zig project
+
+        This template provides the Zig language and LSP and SOPS, Age, and yq
+        for secret management.
+
+        See `README.md` for further information.
+      '';
+    };
+
     default = templates.go;
   };
 };
