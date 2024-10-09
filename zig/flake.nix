@@ -37,7 +37,7 @@
 
             packages = with pkgs; [
                 zig
-                zigls
+                zls
                 sops # sops
                 age # used for sops encryption
                 yq-go # used to parse secret files
