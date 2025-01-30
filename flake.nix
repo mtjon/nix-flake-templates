@@ -14,14 +14,14 @@ outputs = { self }: rec {
       '';
     };
 
-    rust = { 
-      path = ./rust;
-      description = "Rust template";
+    go = {
+      path = ./go;
+      description = "Go template";
       welcomeText = ''
-        # Templated Rust project
+        # Templated Go project
 
-        This template provides the Rust language and LSP, naersk for converting
-        your Cargo modules to Nix, and SOPS for secret management.
+        This template provides the Go language and LSP, gomod2nix for
+        converting your Go modules to Nix, and SOPS for secret management.
 
         See `README.md` for further information.
       '';
@@ -35,6 +35,14 @@ outputs = { self }: rec {
 
         This template provides the Go language and LSP, gomod2nix for
         converting your Go modules to Nix, and SOPS for secret management.
+    rust = { 
+      path = ./rust;
+      description = "Rust template";
+      welcomeText = ''
+        # Templated Rust project
+
+        This template provides the Rust language and LSP, naersk for converting
+        your Cargo modules to Nix, and SOPS for secret management.
 
         See `README.md` for further information.
       '';
