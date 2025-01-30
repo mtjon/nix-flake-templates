@@ -3,22 +3,15 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    devshell = {
-      url = "github:numtide/devshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     naersk = {
       url = "github:nix-community/naersk/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, flake-utils, devshell, naersk }:
+  outputs = { self, nixpkgs, flake-utils, naersk }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ devshell.overlays.default ];
-        };
+        pkgs = import nixpkgs { inherit system; };
         naersk-lib = pkgs.callPackage naersk { };
         # Example of local packaged script
         #my-script-buildInputs = with pkgs; [ curl ];
@@ -41,29 +34,19 @@
         };
         apps = {};
         devShells = {
-          default = pkgs.devshell.mkShell {
-            # Define the environment of your devshell
-            env = [
-            # e.g.
-            #{
-            #  name = "FOO";
-            #  eval = "$(sops -d ./secrets/local.yaml | yq '.foo')";
-            #}
-            ];
-
-            packages = with pkgs; [
-              cargo
+          default = import ./shell.nix { 
+            inherit pkgs;
+            dependencies = with pkgs; [
+              cargo 
               rustc
               rustfmt
               rustPackages.clippy
-              sops # sops
-              age # used for sops encryption
               # add further packages here, e.g.:
               #openapi-generator-cli
               #yq-go
               # can also add local scripts from flake's packages
               #my-script
-            ];
+            ]; 
           };
         };
       }
